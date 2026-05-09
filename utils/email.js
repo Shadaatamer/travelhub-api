@@ -1,6 +1,6 @@
 const nodemailer = require('nodemailer');
 const pug = require('pug');
-const htmlToText = require('html-to-text');
+const { htmlToText } = require('html-to-text');
 
 module.exports = class Email {
   constructor(user, url) {
@@ -12,8 +12,17 @@ module.exports = class Email {
 
   transport() {
     if (process.env.NODE_ENV === 'production') {
-      return 1;
+      return nodemailer.createTransport({
+        host: process.env.RESEND_HOST,
+        port: Number(process.env.RESEND_PORT),
+        secure: true,
+        auth: {
+          user: process.env.RESEND_USERNAME,
+          pass: process.env.RESEND_API_KEY,
+        },
+      });
     }
+
     return nodemailer.createTransport({
       host: process.env.EMAIL_HOST,
       port: process.env.EMAIL_PORT,
@@ -22,7 +31,7 @@ module.exports = class Email {
   }
 
   async send(template, subject) {
-    const html = pug.renderFile(`${__dirname}/..views/emails/${template}.pug`, {
+    const html = pug.renderFile(`${__dirname}/../views/email/${template}.pug`, {
       firstName: this.firstName,
       url: this.url,
       subject,
@@ -32,12 +41,19 @@ module.exports = class Email {
       to: this.to,
       subject,
       html,
-      text: htmlToText.fromString(html),
+      text: htmlToText(html),
     };
-    await this.createTransport().sendMail(mailOptions);
+    await this.transport().sendMail(mailOptions);
   }
 
   async sendWelcome() {
     await this.send('welcome', 'Welcome to the Natours Family!');
+  }
+
+  async sendPasswordReset() {
+    await this.send(
+      'passwordReset',
+      'Your password reset token (valid for only 10 minutes)',
+    );
   }
 };
