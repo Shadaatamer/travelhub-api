@@ -3,9 +3,9 @@ import '@babel/polyfill';
 import { displayMap } from './mapbox';
 import { login, logout } from './login';
 import { updateSettings } from './updateSettings';
-// import { bookTour } from './stripe';
+import { bookTour } from './stripe';
+import { showAlert } from './alerts';
 
-// DOM ELEMENTS
 const mapBox = document.getElementById('map');
 const loginForm = document.querySelector('.form--login');
 const logOutBtn = document.querySelector('.nav__el--logout');
@@ -36,7 +36,6 @@ if (userDataForm)
     form.append('name', document.getElementById('name').value);
     form.append('email', document.getElementById('email').value);
     form.append('photo', document.getElementById('photo').files[0]);
-    console.log(form);
 
     updateSettings(form, 'data');
   });
@@ -66,3 +65,6 @@ if (bookBtn)
     const { tourId } = e.target.dataset;
     bookTour(tourId);
   });
+
+const alertMessage = document.querySelector('body').dataset.alert;
+if (alertMessage) showAlert('success', alertMessage, 20);
