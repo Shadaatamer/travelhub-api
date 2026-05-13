@@ -142,15 +142,6 @@ tourSchema.pre(/^find/, function () {
   this.start = Date.now();
 });
 
-tourSchema.post(/^find/, function () {
-  console.log(`Query took ${Date.now() - this.start} milliseconds!`);
-});
-
-tourSchema.pre('aggregate', function () {
-  this.pipeline().unshift({ $match: { secretTour: { $ne: true } } });
-  console.log(this.pipeline());
-});
-
 const Tour = mongoose.model('Tour', tourSchema);
 
 module.exports = Tour;
