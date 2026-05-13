@@ -74,6 +74,33 @@ block content
     .reviews
       each review in tour.reviews
         +reviewCard(review)
+  if user
+    section.section-review-form
+      .review-form
+        h2.heading-secondary.ma-bt-md Write a review
+
+        form.form.form--review
+          .form__group
+            label.form__label(for='rating') Rating
+            select.form__input#rating(name='rating' required)
+              option(value='') Choose rating
+              option(value='5') 5 - Excellent
+              option(value='4') 4 - Good
+              option(value='3') 3 - Average
+              option(value='2') 2 - Poor
+              option(value='1') 1 - Terrible
+
+          .form__group
+            label.form__label(for='review') Review
+            textarea#review.form__input.form__textarea(
+              name='review'
+              required
+              rows='6'
+              placeholder='Write your review here...'
+            )
+
+          .form__group
+            button.btn.btn--green.btn--review(type='submit' data-tour-id=`${tour.id}`) Submit review
 
   section.section-cta
     .cta
