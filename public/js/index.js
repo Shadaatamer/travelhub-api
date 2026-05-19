@@ -5,15 +5,14 @@ import { login, logout } from './login';
 import { updateSettings } from './updateSettings';
 import { bookTour } from './stripe';
 import { showAlert } from './alerts';
-import { createReview } from './review';
 
+// DOM ELEMENTS
 const mapBox = document.getElementById('map');
 const loginForm = document.querySelector('.form--login');
 const logOutBtn = document.querySelector('.nav__el--logout');
 const userDataForm = document.querySelector('.form-user-data');
 const userPasswordForm = document.querySelector('.form-user-password');
 const bookBtn = document.getElementById('book-tour');
-const reviewForm = document.querySelector('.form--review');
 
 // DELEGATION
 if (mapBox) {
@@ -68,16 +67,5 @@ if (bookBtn)
     bookTour(tourId);
   });
 
-if (reviewForm)
-  reviewForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    console.log('Review form submitted');
-
-    const review = document.getElementById('review').value;
-    const rating = document.getElementById('rating').value;
-    const tourId = document.querySelector('.btn--review').dataset.tourId;
-
-    createReview(tourId, review, rating);
-  });
 const alertMessage = document.querySelector('body').dataset.alert;
 if (alertMessage) showAlert('success', alertMessage, 20);
