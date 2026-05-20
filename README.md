@@ -4,7 +4,7 @@ TravelHub is a full-stack tour booking application where users can browse tours,
 
 ## Live Demo
 
-https://travelhub-api.vercel.app
+https://travelhub-booking-app.vercel.app
 
 ## Demonstration
 
@@ -71,3 +71,40 @@ You can test the app using this demo account:
 ```txt
 Email: laura@example.com
 Password: test1234
+```
+## Stripe Test Card
+
+Use this card for test checkout:
+
+```txt
+Card number: 4242 4242 4242 4242
+Expiry: Any future date
+CVC: Any 3 digits
+```
+
+## Environment Variables
+
+This project requires environment variables such as:
+
+```env
+NODE_ENV=production
+DATABASE=your_mongodb_connection_string
+DATABASE_PASSWORD=your_database_password
+JWT_SECRET=your_jwt_secret
+JWT_EXPIRES_IN=90d
+JWT_COOKIE_EXPIRES_IN=90
+STRIPE_SECRET_KEY=your_stripe_secret_key
+STRIPE_WEBHOOK_SECRET=your_stripe_webhook_secret
+EMAIL_USERNAME=your_email_username
+EMAIL_PASSWORD=your_email_password
+EMAIL_HOST=your_email_host
+EMAIL_PORT=your_email_port
+```
+
+## Roadmap
+
+- Add user review dashboard
+- Add billing history page
+- Improve mobile responsiveness
+- Add forgot/reset password UI
+- Add admin dashboard pages
