@@ -10,11 +10,16 @@ https://travelhub-api.vercel.app
 
 ### Home Page
 
-https://github.com/user-attachments/assets/YOUR-HOME-VIDEO-LINK
+
+
+https://github.com/user-attachments/assets/28a87341-d3cb-49b9-b999-f7247bcd8dd9
+
+
+
 
 ### Tour Details & Booking Flow
 
-https://github.com/user-attachments/assets/YOUR-TOUR-BOOKING-VIDEO-LINK
+
 
 > The booking demo shows the tour details page and Stripe checkout flow using test mode.
 
