@@ -12,7 +12,7 @@ export const signup = async (name, email, password, passwordConfirm) => {
         name,
         email,
         password,
-        confirmPassword,
+        confirmPassword: passwordConfirm,
       },
     });
 
@@ -23,6 +23,12 @@ export const signup = async (name, email, password, passwordConfirm) => {
       }, 1500);
     }
   } catch (err) {
-    showAlert('error', err.response.data.message);
+    console.log(err);
+    showAlert(
+      'error',
+      err.response && err.response.data
+        ? err.response.data.message
+        : err.message || 'Something went wrong',
+    );
   }
 };
