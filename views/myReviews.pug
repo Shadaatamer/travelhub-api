@@ -1,0 +1,25 @@
+extends base
+
+block content
+    main.main
+        .user-view
+            nav.user-view__menu
+                ul.side-nav
+                    +navItem('/me', 'Settings', 'settings')
+                    +navItem('/my-tours', 'My bookings', 'briefcase')
+                    +navItem('/my-reviews', 'My reviews', 'star', true)
+                    +navItem('/billing', 'Billing', 'credit-card')
+
+            .user-view__content
+                .user-view__form-container
+                    h2.heading-secondary.ma-bt-md My Reviews
+
+                    if reviews.length
+                        each review in reviews
+                            p
+                                strong= review.tour ? review.tour.name : 'Tour'
+                            p= review.review
+                            p Rating: #{review.rating} / 5
+                            .line &nbsp;
+                    else
+                        p You have not written any reviews yet.
