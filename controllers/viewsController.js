@@ -3,6 +3,7 @@ const User = require('../models/userModel');
 const Booking = require('../models/bookingModel');
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
+const Review = require('../models/reviewModel');
 
 exports.getOverview = catchAsync(async (req, res, next) => {
   const tours = await Tour.find();
@@ -75,3 +76,25 @@ exports.updateUserData = catchAsync(async (req, res, next) => {
     user: updatedUser,
   });
 });
+
+exports.getMyReviews = async (req, res, next) => {
+  try {
+    const reviews = await Review.find({ user: req.user.id }).populate({
+      path: 'tour',
+      select: 'name slug imageCover',
+    });
+
+    res.status(200).render('myReviews', {
+      title: 'My Reviews',
+      reviews,
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
+exports.getBilling = (req, res) => {
+  res.status(200).render('billing', {
+    title: 'Billing',
+  });
+};
