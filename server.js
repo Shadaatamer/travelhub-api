@@ -4,8 +4,6 @@ const dotenv = require('dotenv');
 
 dotenv.config({ path: './config.env' });
 
-mongoose.set('bufferCommands', false);
-
 const app = require('./app');
 
 const db = process.env.DATABASE.replace(
@@ -34,12 +32,14 @@ async function connectDB() {
   return cached.conn;
 }
 
-connectDB().catch((err) => {
-  console.log('DB connection error:', err);
-});
-
 const port = process.env.PORT || 3000;
 
-app.listen(port, () => {
-  console.log(`port: ${port}`);
-});
+connectDB()
+  .then(() => {
+    app.listen(port, () => {
+      console.log(`port: ${port}`);
+    });
+  })
+  .catch((err) => {
+    console.log('DB connection error:', err);
+  });
