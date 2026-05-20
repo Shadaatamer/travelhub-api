@@ -19,6 +19,7 @@ https://github.com/user-attachments/assets/28a87341-d3cb-49b9-b999-f7247bcd8dd9
 
 ### Tour Details & Booking Flow
 
+https://github.com/user-attachments/assets/9fdbff07-e59f-4811-a8f5-e245bfa91419
 
 
 > The booking demo shows the tour details page and Stripe checkout flow using test mode.
