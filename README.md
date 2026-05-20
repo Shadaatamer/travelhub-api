@@ -22,3 +22,15 @@ Node.js, Express, MongoDB, Mongoose, Pug, Axios, Stripe, Vercel
 
 ## Environment Variables
 This project requires environment variables such as DATABASE, JWT_SECRET, STRIPE_SECRET_KEY, and email credentials.
+
+## Demo Login
+
+Email: laura@example.com  
+Password: test1234
+
+## Roadmap
+- Add user review dashboard
+- Add billing history page
+- Improve mobile UI
+- Add forgot/reset password UI
+- Add admin dashboard pages
